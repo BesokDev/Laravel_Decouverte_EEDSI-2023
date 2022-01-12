@@ -9,6 +9,7 @@
         @foreach( $plats as $plat )
             <a href="{{ route('plat.show', ['id' => $plat->id] ) }}" class="text-decoration-none"><p>{{ $plat->title }}</p></a>
             <a href="{{ route('plat.update', ['id' => $plat->id]) }}" class="btn btn-info">Modifier</a>
+            <a href="{{ route('plat.delete', ['id' => $plat->id]) }}" class="btn btn-danger">Supprimer</a>
         @endforeach
 
     @else

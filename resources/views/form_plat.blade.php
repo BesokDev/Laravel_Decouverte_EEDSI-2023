@@ -6,7 +6,7 @@
 
     <form action="{{ isset($plat->id) === false ? route('plat.store') : route('plat.store.update', ['id' => $plat->id]) }}" class="col-6" method="POST">
 
-{{--        --}}
+{{-- Changement la méthode en PATCH si nous sommes en modification d'un Plat --}}
         @isset($plat->id)
             {{ method_field('PATCH') }}
         @endisset

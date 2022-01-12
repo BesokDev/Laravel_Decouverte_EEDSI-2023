@@ -37,6 +37,7 @@ Route::patch('/plat/modifier/{id}', [ExempleController::class, 'storeUpdate'])->
 
 Route::get('/contact', [ExempleController::class, 'contact'])->name('contact');
 
+Route::get('/plat/supprimer/{id}', [ExempleController::class, 'delete'])->name('plat.delete');
 ///////////////////////////// END ROUTING /////////////////////////////////////
 
 

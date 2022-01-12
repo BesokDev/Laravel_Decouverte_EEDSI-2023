@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // Grâce à la CLI, l'objet Request à été automatiquement importé.
 use App\Models\Plat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class ExempleController extends Controller
 {
@@ -115,6 +116,17 @@ class ExempleController extends Controller
             L'attaque étant actionnée par l'utilisateur, un grand nombre de systèmes d'authentification web sont contourné.
         */
 
+/////////////////////////////////////REFACTORISATION ///////////////////////////////////
+
+        # Méthode qui nécessite d'ajouter les props de Plat à $fillable (dans le Model Plat)
+        Plat::create([
+            'title' => $request->input('title'),
+            'content' => $request->input('content')
+        ]);
+
+        return redirect('/');
+///////////////////////////////////////////////////////////////////////////////////
+
         # Instanciation d'un objet
         $plat = new Plat();
 
@@ -145,6 +157,24 @@ class ExempleController extends Controller
 
     public function storeUpdate($id, Request $request)
     {
-        dd($id);
+        $plat = Plat::findOrFail($id);
+
+        $plat->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content')
+        ]);
+
+        return redirect('/');
+    }
+
+    public function delete($id)
+    {
+        $plat = Plat::findOrFail($id);
+
+        $plat->delete();
+
+        # On redirige l'utilisateur grâce à l'objet Response et sa méthode redirectToRoute()
+        #       => ATTENTION : on renseigne le nom d'une route (et plus son url : voir ci-dessus le return redirect('/'))
+        return Response::redirectToRoute('home');
     }
 }
