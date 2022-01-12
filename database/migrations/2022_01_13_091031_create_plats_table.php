@@ -17,6 +17,16 @@ class CreatePlatsTable extends Migration
         Schema::create('plats', function (Blueprint $table) {
             # Ligne générée par la command line (make:migration) représente l'id auto-incrémenté.
             $table->id();
+
+            //////////////////// RELATION ///////////////////
+            # Pour créer une relation, il vous faudra ajouter ces instructions :
+            $table->unsignedBigInteger('cocktail_id');
+            $table->foreign('cocktail_id')
+                ->references('id')
+                ->on('cocktails')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+
             # Grâce à l'objet Blueprint, on peut construire notre table avec les méthodes fournies par Blueprint
             $table->string('title');
             $table->mediumText('content');

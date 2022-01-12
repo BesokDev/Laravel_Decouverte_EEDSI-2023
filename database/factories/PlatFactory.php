@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Cocktail;
 use App\Models\Plat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,6 +25,7 @@ class PlatFactory extends Factory
         return [
             'title' => $this->faker->sentence(3),
             'content' => $this->faker->paragraph,
+            'cocktail_id' => Cocktail::factory(),
             'created_at' => now()
         ];
 

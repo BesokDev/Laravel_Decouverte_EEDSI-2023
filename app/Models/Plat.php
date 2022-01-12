@@ -13,5 +13,13 @@ class Plat extends Model
     protected $fillable = [
         'title',
         'content',
+        'cocktail_id'
     ];
+
+    # La fonction pour créer la relation avec Cocktail aura le nom de la propriété.
+    public function cocktail()
+    {
+        // Ce côté de la relation est : One
+        return $this->belongsTo('App\Models\Cocktail');
+    }
 }
